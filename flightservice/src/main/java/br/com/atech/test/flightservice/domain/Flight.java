@@ -16,7 +16,7 @@ public class Flight {
     private LocalDateTime arrivalTime;
 
     @Embedded
-    private City departurCity;
+    private City departureCity;
     @Embedded
     private City arrivalCity;
     @Embedded
@@ -37,7 +37,7 @@ public class Flight {
                         Pilot pilot, FlightStatus status) {
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
-        this.departurCity = departurCity;
+        this.departureCity = departurCity;
         this.arrivalCity = arrivalCity;
         this.aircraft = aircraft;
         this.pilot = pilot;

@@ -1,10 +1,10 @@
 package br.com.atech.test.flightservice.domain;
 
-import net.bytebuddy.implementation.bytecode.Throw;
 import org.apache.commons.lang.NotImplementedException;
 
 import java.security.InvalidParameterException;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public enum FlightStatus {
@@ -60,18 +60,20 @@ public enum FlightStatus {
     LANDING_LATE{
         @Override
         protected List<FlightStatus> permitedStatus() {
-            return Arrays.asList(END_TRIP);
+            return Collections.singletonList(END_TRIP);
         }
     },
     END_TRIP {
         @Override
         protected List<FlightStatus> permitedStatus() {
-            return Arrays.asList();
+            return Collections.emptyList();
         }
     };
 
     public final FlightStatus canGoTo(FlightStatus newStatus) {
-        return permitedStatus().stream().filter(f -> f.equals(newStatus)).findFirst().orElseThrow(() -> new InvalidParameterException());
+        return permitedStatus().stream()
+                .filter(f -> f.equals(newStatus)).findFirst()
+                .orElseThrow(InvalidParameterException::new);
     }
 
     protected List<FlightStatus> permitedStatus() {
