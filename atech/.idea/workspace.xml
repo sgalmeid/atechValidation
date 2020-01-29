@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7159f676-4f9a-4c78-9b55-0b325f48ccc2" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="JQLSearcherProjectManager">
+    <selected>-1</selected>
+    <searchers />
+  </component>
+  <component name="JiraServerManager">
+    <selected>-1</selected>
+    <servers />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1X3BQeqkYekrWwNwyiobf01w7Am" />
+  <component name="ProjectViewState">
+    <option name="abbreviatePackageNames" value="true" />
+    <option name="autoscrollFromSource" value="true" />
+    <option name="autoscrollToSource" value="true" />
+    <option name="compactDirectories" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showMembers" value="true" />
+    <option name="showVisibilityIcons" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../flightservice/src/main/resources" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/../flightservice/src/main/resources" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.FlightserviceApplication">
+    <configuration name="EurekaserverApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="br.com.atech.test.eurekaserver.EurekaserverApplication" />
+      <module name="eurekaserver" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.com.atech.test.eurekaserver.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FlightserviceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="br.com.atech.test.flightservice.FlightserviceApplication" />
+      <module name="flightservice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.com.atech.test.flightservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.FlightserviceApplication" />
+        <item itemvalue="Application.EurekaserverApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7159f676-4f9a-4c78-9b55-0b325f48ccc2" name="Default Changelist" comment="" />
+      <created>1580264882219</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1580264882219</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1388" height="222" key="GridCell.Tab.0.bottom" timestamp="1580266496264">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1388" height="222" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1580266496264" />
+    <state width="1388" height="222" key="GridCell.Tab.0.center" timestamp="1580266496262">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1388" height="222" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1580266496262" />
+    <state width="1388" height="222" key="GridCell.Tab.0.left" timestamp="1580266496261">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1388" height="222" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1580266496261" />
+    <state width="1388" height="222" key="GridCell.Tab.0.right" timestamp="1580266496263">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1388" height="222" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1580266496263" />
+    <state x="214" y="86" key="NewModule_or_Project.wizard" timestamp="1580266968323">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="214" y="86" key="NewModule_or_Project.wizard/0.0.1440.900@0.0.1440.900" timestamp="1580266968323" />
+    <state x="0" y="0" key="new project wizard" timestamp="1580264928299">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="0" y="0" key="new project wizard/0.0.1440.900@0.0.1440.900" timestamp="1580264928299" />
+    <state x="301" y="0" width="838" height="1032" key="search.everywhere.popup" timestamp="1580267868636">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="301" y="0" width="838" height="1032" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1580267868636" />
+  </component>
+</project>
