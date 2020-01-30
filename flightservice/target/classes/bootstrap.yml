@@ -1,6 +1,6 @@
 spring:
   application:
-    name: 'Fligth Service'
+    name: flightservice
     profile:
       active: default
     cloud:

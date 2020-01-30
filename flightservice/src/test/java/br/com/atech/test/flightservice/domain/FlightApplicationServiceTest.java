@@ -1,5 +1,10 @@
 package br.com.atech.test.flightservice.domain;
 
+import br.com.atech.test.flightservice.infra.dto.AircraftDto;
+import br.com.atech.test.flightservice.infra.dto.CityDto;
+import br.com.atech.test.flightservice.infra.dto.FlightDto;
+import br.com.atech.test.flightservice.infra.dto.PilotDto;
+import br.com.atech.test.flightservice.infra.dto.form.FlightFormDto;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import static org.junit.jupiter.api.Assertions.*;
@@ -54,6 +59,32 @@ class FlightApplicationServiceTest {
                 .findById(any(Long.class));
         Mockito.verify(flightRepository, times(1))
                 .save(any(Flight.class));
+    }
+
+    @Test
+    void shouldCreateNewFligthInformation(){
+        prepareTest();
+
+        FlightFormDto flightFormDto = FlightFormDto.builder()
+                .aircraft(new AircraftDto(1L, "Emb 19"))
+                .arrivalCity(new CityDto(1L, "Sao Paulo"))
+                .arrivalTime(LocalDateTime.now().plusHours(13))
+                .departureCity(new CityDto(2L, "Londres"))
+                .departureTime(LocalDateTime.now().plusHours(2))
+                .pilot(new PilotDto(1L, "Carlos"))
+                .build();
+
+        FlightDto flightDto = flightApplicationService.create(flightFormDto);
+
+        assertEquals(flightFormDto.getAircraft().getName(),flightDto.getAircraft());
+        assertEquals(flightFormDto.getPilot().getName(),flightDto.getPilot());
+        assertEquals(flightFormDto.getArrivalCity().getName(),flightDto.getArrivalCity());
+        assertEquals(flightFormDto.getDepartureCity().getName(),flightDto.getDepartureCity());
+
+
+        Mockito.verify(flightRepository, times(1))
+                .save(any(Flight.class));
+
     }
 
 

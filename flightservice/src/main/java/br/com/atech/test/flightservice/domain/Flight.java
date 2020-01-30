@@ -1,5 +1,6 @@
 package br.com.atech.test.flightservice.domain;
 
+import br.com.atech.test.flightservice.infra.dto.form.FlightFormDto;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -44,6 +45,15 @@ public class Flight {
         this.status = FlightStatus.WAITING;
 
         update(departureTime, arrivalTime, departureCity, arrivalCity, aircraft, pilot);
+    }
+
+    public Flight(FlightFormDto flightFormDto) {
+        this(flightFormDto.getDepartureTime(),
+                flightFormDto.getArrivalTime(),
+                new City(flightFormDto.getDepartureCity()),
+                new City(flightFormDto.getArrivalCity()),
+                new Aircraft(flightFormDto.getAircraft()),
+                new Pilot(flightFormDto.getPilot()));
     }
 
     private void update(LocalDateTime departureTime, LocalDateTime arrivalTime,

@@ -1,0 +1,19 @@
+server:
+  port: 8080
+
+eureka:
+  cloud:
+    discovery:
+      enabled: false
+
+spring:
+  datasource:
+    hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 5
+    url: jdbc:postgresql://localhost:5432/flights
+    username: sga
+    password: sga
+  jpa:
+    hibernate:
+      ddl-auto: create
