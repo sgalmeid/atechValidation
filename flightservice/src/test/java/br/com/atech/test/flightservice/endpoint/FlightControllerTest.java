@@ -38,7 +38,7 @@ class FlightControllerTest {
 
     static {
         container = new PostgreSQLContainer("postgres:11.1")
-                .withDatabaseName("flights");
+                .withDatabaseName("flights").withPassword("sa").withUsername("sa");
         container.setPortBindings(Collections.singletonList("2222:5432"));
     }
 

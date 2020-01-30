@@ -1,5 +1,6 @@
 package br.com.atech.test.flightservice.domain;
 
+import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.NotImplementedException;
 
 import java.security.InvalidParameterException;
@@ -73,7 +74,9 @@ public enum FlightStatus {
     public final FlightStatus canGoTo(FlightStatus newStatus) {
         return permitedStatus().stream()
                 .filter(f -> f.equals(newStatus)).findFirst()
-                .orElseThrow(InvalidParameterException::new);
+                .orElseThrow(() ->
+                        new InvalidParameterException(this+" can not bee changed to "+ newStatus +
+                                ". \n Possible status is " + permitedStatus()));
     }
 
     protected List<FlightStatus> permitedStatus() {
