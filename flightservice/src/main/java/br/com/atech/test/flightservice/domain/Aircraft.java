@@ -13,6 +13,8 @@ public class Aircraft {
     private Long id;
     private String name;
 
+    public Aircraft(){}
+
     public Aircraft(AircraftDto aircraft) {
         this(aircraft.getId(), aircraft.getName());
     }

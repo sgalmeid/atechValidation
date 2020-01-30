@@ -38,6 +38,9 @@ public class Flight {
     @Enumerated(EnumType.STRING)
     private FlightStatus status;
 
+
+    public Flight(){}
+
     @Builder
     public Flight(LocalDateTime departureTime, LocalDateTime arrivalTime,
                   City departureCity, City arrivalCity, Aircraft aircraft,

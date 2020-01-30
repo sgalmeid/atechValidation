@@ -13,6 +13,8 @@ public class City {
     private Long id;
     private String name;
 
+    public City(){}
+
     public City(CityDto city) {
         this(city.getId(), city.getName());
     }

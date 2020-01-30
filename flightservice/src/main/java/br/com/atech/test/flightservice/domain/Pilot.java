@@ -13,6 +13,8 @@ public class Pilot {
     private Long id;
     private String name;
 
+    public Pilot(){}
+
     public Pilot(PilotDto pilot) {
         this(pilot.getId(),pilot.getName());
     }
