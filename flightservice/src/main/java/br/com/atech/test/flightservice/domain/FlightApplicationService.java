@@ -25,10 +25,11 @@ public class FlightApplicationService {
 
     }
 
-    public void updateStatus(long id, FlightStatus newStatus) {
+    public FlightDto updateStatus(long id, FlightStatus newStatus) {
         Flight flight = flightRepository.findById(id).orElseThrow(IllegalArgumentException::new);
         flight.updateStatus(newStatus);
-        flightRepository.save(flight);
+        return new FlightDto(flightRepository.save(flight));
+
     }
 
     public FlightDto create(FlightFormDto flightFormDto) {

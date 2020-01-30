@@ -5,6 +5,7 @@ import br.com.atech.test.flightservice.infra.dto.CityDto;
 import br.com.atech.test.flightservice.infra.dto.FlightDto;
 import br.com.atech.test.flightservice.infra.dto.PilotDto;
 import br.com.atech.test.flightservice.infra.dto.form.FlightFormDto;
+import br.com.atech.test.flightservice.infra.util.DataCreator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import static org.junit.jupiter.api.Assertions.*;
@@ -65,14 +66,7 @@ class FlightApplicationServiceTest {
     void shouldCreateNewFligthInformation(){
         prepareTest();
 
-        FlightFormDto flightFormDto = FlightFormDto.builder()
-                .aircraft(new AircraftDto(1L, "Emb 19"))
-                .arrivalCity(new CityDto(1L, "Sao Paulo"))
-                .arrivalTime(LocalDateTime.now().plusHours(13))
-                .departureCity(new CityDto(2L, "Londres"))
-                .departureTime(LocalDateTime.now().plusHours(2))
-                .pilot(new PilotDto(1L, "Carlos"))
-                .build();
+        FlightFormDto flightFormDto = DataCreator.getFlightFormDto();
 
         FlightDto flightDto = flightApplicationService.create(flightFormDto);
 
@@ -89,14 +83,7 @@ class FlightApplicationServiceTest {
 
 
     private void prepareTest() {
-        Flight flight = Flight.builder()
-                .aircraft(new Aircraft(1L,"Emb 19"))
-                .arrivalCity(new City(1L, "Sao Paulo"))
-                .arrivalTime(LocalDateTime.now().plusHours(13))
-                .departureCity(new City(2L,"Londres"))
-                .departureTime(LocalDateTime.now().plusHours(2))
-                .pilot(new Pilot(1L, "Carlos"))
-                .build();
+        Flight flight = DataCreator.getFlight();
 
         Mockito.when(flightRepository.findById(any(Long.class)))
                 .thenReturn(Optional.ofNullable(flight));
