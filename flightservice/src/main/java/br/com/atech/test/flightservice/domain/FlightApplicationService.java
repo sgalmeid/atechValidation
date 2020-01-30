@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,4 +25,9 @@ public class FlightApplicationService {
 
     }
 
+    public void updateStatus(long id, FlightStatus newStatus) {
+        Flight flight = flightRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+        flight.updateStatus(newStatus);
+        flightRepository.save(flight);
+    }
 }
