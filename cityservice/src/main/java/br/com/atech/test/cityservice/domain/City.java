@@ -14,14 +14,14 @@ public class City {
     @Column(nullable=false, insertable = false, updatable = false)
     private Long id;
 
-    private String name;
+    private String city;
 
     private String state;
 
     private String country;
 
-    public City(String name, String state, String country){
-        this.name = name;
+    public City(String city, String state, String country){
+        this.city = city;
     }
 
 }
