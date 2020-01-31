@@ -1,6 +1,6 @@
 package br.com.atech.test.flightservice.domain;
 
-import br.com.atech.test.flightservice.infra.dto.PilotDto;
+import br.com.atech.test.flightservice.infra.dto.PilotDtoLite;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -15,7 +15,7 @@ public class Pilot {
 
     public Pilot(){}
 
-    public Pilot(PilotDto pilot) {
+    public Pilot(PilotDtoLite pilot) {
         this(pilot.getId(),pilot.getName());
     }
 }

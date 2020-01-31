@@ -1,7 +1,9 @@
 package br.com.atech.test.flightservice.domain;
 
 
+import br.com.atech.test.flightservice.infra.clients.PilotsClient;
 import br.com.atech.test.flightservice.infra.dto.FlightDto;
+import br.com.atech.test.flightservice.infra.dto.PilotDto;
 import br.com.atech.test.flightservice.infra.dto.form.FlightFormDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -16,6 +18,7 @@ import java.util.stream.Collectors;
 public class FlightApplicationService {
 
     private final FlightRepository flightRepository;
+    private final PilotsClient pilotsClient;
 
     public Page<FlightDto> list(final Pageable pageable){
         Page<Flight> flights = flightRepository.findAll(pageable);
@@ -32,7 +35,15 @@ public class FlightApplicationService {
 
     }
 
-    public FlightDto create(FlightFormDto flightFormDto) {
-        return new FlightDto(flightRepository.save(new Flight(flightFormDto)));
+    public FlightDto create(FlightFormDto formFlight) {
+        PilotDto pilot = pilotsClient.findById(formFlight.getPilot());
+        Flight flight = new Flight(formFlight.getDepartureTime(),
+                formFlight.getArrivalTime(),
+                new City(),
+                new City(),
+                new Aircraft(),
+                pilot.getId(),
+                pilot.);
+        return new FlightDto(flightRepository.save(flight));
     }
 }

@@ -50,14 +50,6 @@ public class Flight {
         update(departureTime, arrivalTime, departureCity, arrivalCity, aircraft, pilot);
     }
 
-    public Flight(FlightFormDto flightFormDto) {
-        this(flightFormDto.getDepartureTime(),
-                flightFormDto.getArrivalTime(),
-                new City(flightFormDto.getDepartureCity()),
-                new City(flightFormDto.getArrivalCity()),
-                new Aircraft(flightFormDto.getAircraft()),
-                new Pilot(flightFormDto.getPilot()));
-    }
 
     private void update(LocalDateTime departureTime, LocalDateTime arrivalTime,
                         City departureCity, City arrivalCity, Aircraft aircraft,
