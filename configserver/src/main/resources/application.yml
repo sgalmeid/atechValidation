@@ -10,5 +10,6 @@ spring:
           search-paths:
             - flightservice
             - pilotservice
+            - cityservice
 
 
