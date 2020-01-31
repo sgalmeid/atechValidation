@@ -1,6 +1,7 @@
 package br.com.atech.test.pilotservice.infra.dto;
 
 import br.com.atech.test.pilotservice.domain.Pilot;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 
 import java.time.LocalDate;
@@ -12,7 +13,6 @@ public class PilotDto {
     private String fisrtName;
     private String lastName;
 
-    private LocalDate birthday;
     private String breve;
 
     private AdrressDto adrress;
@@ -25,7 +25,6 @@ public class PilotDto {
         this.id = pilot.getId();
         this.fisrtName = pilot.getFisrtName();
         this.lastName = pilot.getLastName();
-        this.birthday = pilot.getBirthday();
         this.breve = pilot.getBreve();
         this.adrress = AdrressDto.builder()
                 .cityName(pilot.getAdrress().getCityName())
