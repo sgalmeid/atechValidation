@@ -6,7 +6,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/sgalmeid/atechValidationConfig
+          uri: https://github.com/sgalmeid/ValidationConfig
           search-paths:
             - flightservice
             - pilotservice
