@@ -1,6 +1,7 @@
-package br.com.atech.test.pilotservice.domain;
+package br.com.atech.test.pilotservice.infra.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 
 import javax.persistence.Embeddable;
@@ -8,10 +9,10 @@ import javax.persistence.Embeddable;
 @Embeddable
 @AllArgsConstructor
 @Getter
-public class Adrress {
+@Builder
+public class AdrressDto {
     private String cityName;
     private String street;
 
-    public Adrress(){}
-
+    public AdrressDto(){}
 }
