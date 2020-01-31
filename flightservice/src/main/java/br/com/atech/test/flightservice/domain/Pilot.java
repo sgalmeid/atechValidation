@@ -2,6 +2,7 @@ package br.com.atech.test.flightservice.domain;
 
 import br.com.atech.test.flightservice.infra.dto.PilotDtoLite;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 
 import javax.persistence.Embeddable;
@@ -9,6 +10,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 @Getter
 @AllArgsConstructor
+@Builder
 public class Pilot {
     private Long id;
     private String name;

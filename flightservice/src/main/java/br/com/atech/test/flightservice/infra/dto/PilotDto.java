@@ -11,7 +11,6 @@ public class PilotDto {
     private String fisrtName;
     private String lastName;
 
-    private LocalDate birthday;
     private String breve;
 
     private AdrressDto adrress;

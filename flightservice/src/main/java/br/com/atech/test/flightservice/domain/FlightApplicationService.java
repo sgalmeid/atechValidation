@@ -42,8 +42,9 @@ public class FlightApplicationService {
                 new City(),
                 new City(),
                 new Aircraft(),
-                pilot.getId(),
-                pilot.);
+                Pilot.builder().id(pilot.getId())
+                .name(pilot.getFisrtName()).build()
+                );
         return new FlightDto(flightRepository.save(flight));
     }
 }
