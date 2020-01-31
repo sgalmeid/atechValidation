@@ -1,14 +1,10 @@
 package br.com.atech.test.flightservice.domain;
 
-import br.com.atech.test.flightservice.infra.dto.AircraftDto;
-import br.com.atech.test.flightservice.infra.dto.CityDto;
 import br.com.atech.test.flightservice.infra.dto.FlightDto;
-import br.com.atech.test.flightservice.infra.dto.PilotDto;
 import br.com.atech.test.flightservice.infra.dto.form.FlightFormDto;
 import br.com.atech.test.flightservice.infra.util.DataCreator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import static org.junit.jupiter.api.Assertions.*;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,8 +15,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 
-import java.security.InvalidParameterException;
-import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Optional;
 
@@ -69,12 +63,6 @@ class FlightApplicationServiceTest {
         FlightFormDto flightFormDto = DataCreator.getFlightFormDto();
 
         FlightDto flightDto = flightApplicationService.create(flightFormDto);
-
-        assertEquals(flightFormDto.getAircraft().getName(),flightDto.getAircraft());
-        assertEquals(flightFormDto.getPilot().getName(),flightDto.getPilot());
-        assertEquals(flightFormDto.getArrivalCity().getName(),flightDto.getArrivalCity());
-        assertEquals(flightFormDto.getDepartureCity().getName(),flightDto.getDepartureCity());
-
 
         Mockito.verify(flightRepository, times(1))
                 .save(any(Flight.class));
