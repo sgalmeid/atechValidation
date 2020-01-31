@@ -1,6 +1,7 @@
 package br.com.atech.test.pilotservice.domain;
 
 
+import br.com.atech.test.pilotservice.infra.dto.form.PilotFormDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -36,6 +37,9 @@ public class PilotApplicationServiceTest {
         Mockito.when(pilotRepository.findById(any(Long.class)))
                 .thenReturn(getPilotMock());
 
+        Mockito.when(pilotRepository.save(any(Pilot.class)))
+                .then(i -> i.getArguments()[0]);
+
     }
 
     private Optional<Pilot> getPilotMock() {
@@ -50,6 +54,24 @@ public class PilotApplicationServiceTest {
         pilotApplicationService.findPilotById(1L);
         Mockito.verify(pilotRepository, times(1))
                 .findById(any(Long.class));
+    }
+
+    @Test void shouldNewPilot(){
+        PilotFormDto pilotForm = PilotFormDto.builder()
+                .birthday(LocalDate.now())
+                .breve("1234qwert")
+                .cellNumber("12 9999 9999")
+                .city("Taubaté")
+                .email("pilot@piloto.com")
+                .fisrtName("Piloto")
+                .lastName(" de Teste")
+                .strret("aqui perto")
+                .build();
+
+        pilotApplicationService.create(pilotForm);
+
+        Mockito.verify(pilotRepository, times(1))
+                .save(any(Pilot.class));
     }
 
 }
