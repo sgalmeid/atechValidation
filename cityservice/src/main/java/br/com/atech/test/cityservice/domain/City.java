@@ -1,0 +1,27 @@
+package br.com.atech.test.cityservice.domain;
+
+
+import lombok.Getter;
+
+import javax.persistence.*;
+
+@Entity
+@Getter
+public class City {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable=false, insertable = false, updatable = false)
+    private Long id;
+
+    private String name;
+
+    private String state;
+
+    private String country;
+
+    public City(String name, String state, String country){
+        this.name = name;
+    }
+
+}
