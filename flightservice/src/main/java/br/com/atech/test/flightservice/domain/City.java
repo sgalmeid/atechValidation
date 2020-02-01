@@ -16,6 +16,6 @@ public class City {
     public City(){}
 
     public City(CityDto city) {
-        this(city.getId(), city.getName());
+        this(city.getId(), city.getCityName());
     }
 }

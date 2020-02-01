@@ -1,7 +1,9 @@
 package br.com.atech.test.flightservice.domain;
 
 
+import br.com.atech.test.flightservice.infra.clients.CityClient;
 import br.com.atech.test.flightservice.infra.clients.PilotsClient;
+import br.com.atech.test.flightservice.infra.dto.CityDto;
 import br.com.atech.test.flightservice.infra.dto.FlightDto;
 import br.com.atech.test.flightservice.infra.dto.PilotDto;
 import br.com.atech.test.flightservice.infra.dto.form.FlightFormDto;
@@ -11,6 +13,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -19,6 +22,7 @@ public class FlightApplicationService {
 
     private final FlightRepository flightRepository;
     private final PilotsClient pilotsClient;
+    private final CityClient cityClient;
 
     public Page<FlightDto> list(final Pageable pageable){
         Page<Flight> flights = flightRepository.findAll(pageable);
@@ -37,10 +41,13 @@ public class FlightApplicationService {
 
     public FlightDto create(FlightFormDto formFlight) {
         PilotDto pilot = pilotsClient.findById(formFlight.getPilot());
+        CityDto departure = cityClient.findById(formFlight.getDepartureCity());
+        CityDto arrive = cityClient.findById(formFlight.getArrivalCity());
+        cityClient.findById(formFlight.getArrivalCity());
         Flight flight = new Flight(formFlight.getDepartureTime(),
                 formFlight.getArrivalTime(),
-                new City(),
-                new City(),
+                new City(departure),
+                new City(arrive),
                 new Aircraft(),
                 Pilot.builder().id(pilot.getId())
                 .name(pilot.getFisrtName()).build()

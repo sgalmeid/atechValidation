@@ -7,5 +7,5 @@ import lombok.Getter;
 @Getter
 public class CityDto {
     private Long id;
-    private String name;
+    private String cityName;
 }

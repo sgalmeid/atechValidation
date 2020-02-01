@@ -20,6 +20,8 @@ public class City {
 
     private String country;
 
+    public City(){}
+
     public City(String city, String state, String country){
         this.city = city;
     }
