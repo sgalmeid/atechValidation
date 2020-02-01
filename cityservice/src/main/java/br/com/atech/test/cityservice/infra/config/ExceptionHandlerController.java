@@ -1,4 +1,4 @@
-package br.com.atech.test.flightservice.infra.config;
+package br.com.atech.test.cityservice.infra.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;

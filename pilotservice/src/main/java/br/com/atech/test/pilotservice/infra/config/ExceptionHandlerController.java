@@ -1,5 +1,6 @@
-package br.com.atech.test.flightservice.infra.config;
+package br.com.atech.test.pilotservice.infra.config;
 
+import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

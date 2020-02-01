@@ -1,8 +1,10 @@
 package br.com.atech.test.flightservice.domain;
 
 
+import br.com.atech.test.flightservice.infra.clients.AircraftClient;
 import br.com.atech.test.flightservice.infra.clients.CityClient;
 import br.com.atech.test.flightservice.infra.clients.PilotsClient;
+import br.com.atech.test.flightservice.infra.dto.AircraftDto;
 import br.com.atech.test.flightservice.infra.dto.CityDto;
 import br.com.atech.test.flightservice.infra.dto.FlightDto;
 import br.com.atech.test.flightservice.infra.dto.PilotDto;
@@ -23,9 +25,10 @@ public class FlightApplicationService {
     private final FlightRepository flightRepository;
     private final PilotsClient pilotsClient;
     private final CityClient cityClient;
+    private final AircraftClient aircraftClient;
 
     public Page<FlightDto> list(final Pageable pageable){
-        Page<Flight> flights = flightRepository.findAll(pageable);
+        Page<Flight> flights = flightRepository.findByStatusNot(FlightStatus.END_TRIP,  pageable);
        return new PageImpl<>(
                flights.get().map(FlightDto::new).collect(Collectors.toList()),
                pageable, flights.getTotalElements());
@@ -43,12 +46,13 @@ public class FlightApplicationService {
         PilotDto pilot = pilotsClient.findById(formFlight.getPilot());
         CityDto departure = cityClient.findById(formFlight.getDepartureCity());
         CityDto arrive = cityClient.findById(formFlight.getArrivalCity());
+        AircraftDto aircraftDto = aircraftClient.findById(formFlight.getAircraft());
         cityClient.findById(formFlight.getArrivalCity());
         Flight flight = new Flight(formFlight.getDepartureTime(),
                 formFlight.getArrivalTime(),
                 new City(departure),
                 new City(arrive),
-                new Aircraft(),
+                new Aircraft(aircraftDto),
                 Pilot.builder().id(pilot.getId())
                 .name(pilot.getFisrtName()).build()
                 );
