@@ -4,6 +4,7 @@ package br.com.atech.test.pilotservice.domain;
 import br.com.atech.test.pilotservice.infra.dto.PilotDto;
 import br.com.atech.test.pilotservice.infra.dto.PilotShortDto;
 import br.com.atech.test.pilotservice.infra.dto.form.PilotFormDto;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ public class PilotApplicationService {
 
     private final PilotRepository pilotRepository;
 
+    @HystrixCommand()
     public List<PilotShortDto> list(){
        return StreamSupport.stream(pilotRepository.findAll().spliterator(),false)
                 .collect(Collectors.toList()).stream()
@@ -26,11 +28,13 @@ public class PilotApplicationService {
                 .collect(Collectors.toList());
     }
 
+    @HystrixCommand()
     public PilotDto findPilotById(Long id) {
         return new PilotDto(pilotRepository
                 .findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
     }
 
+    @HystrixCommand()
     public PilotDto create(PilotFormDto pilotForm) {
 
         Pilot pilot = new Pilot(pilotForm.getFisrtName(),

@@ -9,6 +9,8 @@ import br.com.atech.test.flightservice.infra.dto.CityDto;
 import br.com.atech.test.flightservice.infra.dto.FlightDto;
 import br.com.atech.test.flightservice.infra.dto.PilotDto;
 import br.com.atech.test.flightservice.infra.dto.form.FlightFormDto;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.ribbon.proxy.annotation.Hystrix;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -27,6 +29,7 @@ public class FlightApplicationService {
     private final CityClient cityClient;
     private final AircraftClient aircraftClient;
 
+    @HystrixCommand()
     public Page<FlightDto> list(final Pageable pageable){
         Page<Flight> flights = flightRepository.findByStatusNot(FlightStatus.END_TRIP,  pageable);
        return new PageImpl<>(
@@ -35,6 +38,7 @@ public class FlightApplicationService {
 
     }
 
+    @HystrixCommand()
     public FlightDto updateStatus(long id, FlightStatus newStatus) {
         Flight flight = flightRepository.findById(id).orElseThrow(IllegalArgumentException::new);
         flight.updateStatus(newStatus);
@@ -42,6 +46,7 @@ public class FlightApplicationService {
 
     }
 
+    @HystrixCommand()
     public FlightDto create(FlightFormDto formFlight) {
         PilotDto pilot = pilotsClient.findById(formFlight.getPilot());
         CityDto departure = cityClient.findById(formFlight.getDepartureCity());
