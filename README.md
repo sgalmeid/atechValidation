@@ -32,3 +32,5 @@ Os logs estao sendo armazenados no PapaeTrail e estão sendo identificados pelo 
 O Hystrix esta configurado em falil fast, sem nenhum falback method configurado.
 
 
+Infelismente o script do Cloud Formation nao consegui fazer ate a data definida para entrega
+
