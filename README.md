@@ -29,3 +29,6 @@ https://springfox.github.io/springfox/
 
 Os logs estao sendo armazenados no PapaeTrail e estão sendo identificados pelo Spring Cloud Sleuth
 
+O Hystrix esta configurado em falil fast, sem nenhum falback method configurado.
+
+
