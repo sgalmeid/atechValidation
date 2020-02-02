@@ -1,5 +1,6 @@
 package br.com.atech.test.flightservice.endpoint;
 
+import br.com.atech.test.flightservice.domain.Flight;
 import br.com.atech.test.flightservice.domain.FlightRepository;
 import br.com.atech.test.flightservice.domain.FlightStatus;
 import br.com.atech.test.flightservice.infra.util.DataCreator;
@@ -71,8 +72,8 @@ class FlightControllerTest {
 
     @Test
     public void shountUpdateStatus() throws Exception {
-
-        mockMvc.perform(patch("/flights/1/"+ FlightStatus.BOARDING_ON_TIME)
+        Flight save = flightRepository.save(DataCreator.getFlight());
+        mockMvc.perform(patch("/flights/"+ save.getId()+"/"+ FlightStatus.BOARDING_ON_TIME)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andDo(print());
