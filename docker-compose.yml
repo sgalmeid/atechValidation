@@ -1,0 +1,103 @@
+version: '3.7'
+services:
+    postgres:
+        image: postgres
+        restart: always
+        container_name: postgres_test
+        ports:
+            - 5432:5432
+        environment:
+            POSTGRES_USER: sga
+            POSTGRES_PASSWORD: sga
+            POSTGRES_MULTIPLE_DATABASES: aircraft,city,light,pilot
+    configserver:
+        build:
+            context: ./configserver
+            dockerfile: Dockerfile
+        image: configserver
+        ports:
+            - 8888:8080
+        depends_on:
+            - postgres
+    eurekaserver:
+        build:
+            context: ./eurekaserver
+            dockerfile: Dockerfile
+        image: eurekaserver
+        ports:
+            - 8761:8080
+        depends_on:
+            - postgres
+            - configserver
+            - authservice
+    authservice:
+        build:
+            context: ./authservice
+            dockerfile: Dockerfile
+        image: authservice
+        ports:
+            - 8088:8080
+    apigateway:
+        build:
+            context: ./apigateway
+            dockerfile: Dockerfile
+        image: apigateway
+        ports:
+            - 5555:8080
+        depends_on:
+            - postgres
+            - configserver
+            - authservice
+            - eurekaserver
+    aircraftservice:
+        build:
+            context: ./aircraftservice
+            dockerfile: Dockerfile
+        image: aircraftservice
+        ports:
+            - 8001:8080
+        depends_on:
+            - postgres
+            - configserver
+            - authservice
+            - eurekaserver
+            - apigateway
+    cityservice:
+        build:
+            context: ./cityservice
+            dockerfile: Dockerfile
+        image: cityservice
+        ports:
+            - 8002:8080
+        depends_on:
+            - postgres
+            - configserver
+            - authservice
+            - eurekaserver
+            - apigateway
+    flightservice:
+        build:
+            context: ./flightservice
+            dockerfile: Dockerfile
+        image: flightservice
+        ports:
+            - 8003:8080
+        depends_on:
+            - postgres
+            - configserver
+            - authservice
+            - eurekaserver
+            - apigateway
+    pilotservice:
+        build:
+            context: ./pilotservice
+            dockerfile: Dockerfile
+        image: pilotservice
+        ports:
+            - 8004:8080
+        depends_on:
+            - postgres
+            - configserver
+            - authservice
+            - eurekaserver
+            - apigateway
