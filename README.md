@@ -40,7 +40,6 @@ curl --request POST \
   --url http://localhost:8088/oauth/token \
   --header 'authorization: Basic c2VhcmNoZmx5OnNlYXJjaGZseTEyMzQ1' \
   --header 'content-type: application/x-www-form-urlencoded' \
-  --cookie JSESSIONID=3B00F17930D8428FDB838D50648EAE7F \
   --data scope=web \
   --data grant_type=password \
   --data username=sys \
@@ -53,4 +52,3 @@ curl --request POST \
   curl --request GET \
   --url http://localhost:8088/user \
   --header 'authorization: Bearer bcd80a64-be37-48f8-ae1d-e772a4beb834' \
-  --cookie JSESSIONID=3B00F17930D8428FDB838D50648EAE7F
