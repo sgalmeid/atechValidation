@@ -1,33 +1,86 @@
 version: '3.7'
 services:
-    postgres:
+    postgres_aircraft:
         image: postgres
         restart: always
-        container_name: postgres_test
+        container_name: postgres_aircraft
         ports:
             - 5432:5432
+        networks:
+            - backend
         environment:
             POSTGRES_USER: sga
             POSTGRES_PASSWORD: sga
-            POSTGRES_MULTIPLE_DATABASES: aircraft,city,light,pilot
+            POSTGRES_DB: aircraft
+    postgres_city:
+        image: postgres
+        restart: always
+        container_name: postgres_city
+        ports:
+            - 5433:5432
+        networks:
+            - backend
+        environment:
+            POSTGRES_USER: sga
+            POSTGRES_PASSWORD: sga
+            POSTGRES_DB: city
+    postgres_flight:
+        image: postgres
+        restart: always
+        container_name: postgres_flight
+        ports:
+            - 5434:5432
+
+        networks:
+            - backend
+        environment:
+            POSTGRES_USER: sga
+            POSTGRES_PASSWORD: sga
+            POSTGRES_DB: flights
+    postgres_pilots:
+        image: postgres
+        restart: always
+        container_name: postgres_pilots
+        ports:
+            - 5435:5432
+        networks:
+            - backend
+        environment:
+            POSTGRES_USER: sga
+            POSTGRES_PASSWORD: sga
+            POSTGRES_DB: pilots
     configserver:
         build:
             context: ./configserver
             dockerfile: Dockerfile
         image: configserver
+        restart: always
         ports:
             - 8888:8080
+        networks:
+            - backend
         depends_on:
-            - postgres
+            - postgres_aircraft
+            - postgres_city
+            - postgres_flight
+            - postgres_pilots
     eurekaserver:
         build:
             context: ./eurekaserver
             dockerfile: Dockerfile
         image: eurekaserver
+        restart: always
         ports:
             - 8761:8080
+        environment:
+            WAIT_HOSTS: postgres_aircraft:5432, postgres_city:5432, postgres_flight:5432, postgres_pilots:5432, configserver:8080
+        networks:
+            - backend
         depends_on:
-            - postgres
+            - postgres_aircraft
+            - postgres_city
+            - postgres_flight
+            - postgres_pilots
             - configserver
             - authservice
     authservice:
@@ -35,17 +88,34 @@ services:
             context: ./authservice
             dockerfile: Dockerfile
         image: authservice
+        restart: always
         ports:
             - 8088:8080
+        environment:
+            WAIT_HOSTS: eurekaserver:8080
+        networks:
+            - backend
     apigateway:
         build:
             context: ./apigateway
             dockerfile: Dockerfile
         image: apigateway
+        restart: always
+        environment:
+            SPRING_APPLICATION_JSON: '{ "spring": {"cloud": {"config": {"uri": "http://configserver:8080"}}}}'
+            WAIT_HOSTS: eurekaserver:8080
         ports:
             - 5555:8080
+        networks:
+            - backend
+        links:
+            - eurekaserver:eurekaserver
+            - configserver:configserver
         depends_on:
-            - postgres
+            - postgres_aircraft
+            - postgres_city
+            - postgres_flight
+            - postgres_pilots
             - configserver
             - authservice
             - eurekaserver
@@ -54,10 +124,19 @@ services:
             context: ./aircraftservice
             dockerfile: Dockerfile
         image: aircraftservice
+        restart: always
         ports:
             - 8001:8080
+        environment:
+            SPRING_APPLICATION_JSON: '{ "spring": {"cloud": {"config": {"uri": "http://configserver:8080"}}}}'
+            WAIT_HOSTS: eurekaserver:8080
+        networks:
+            - backend
         depends_on:
-            - postgres
+            - postgres_aircraft
+            - postgres_city
+            - postgres_flight
+            - postgres_pilots
             - configserver
             - authservice
             - eurekaserver
@@ -67,10 +146,19 @@ services:
             context: ./cityservice
             dockerfile: Dockerfile
         image: cityservice
+        restart: always
         ports:
             - 8002:8080
+        environment:
+            SPRING_APPLICATION_JSON: '{ "spring": {"cloud": {"config": {"uri": "http://configserver:8080"}}}}'
+            WAIT_HOSTS: eurekaserver:8080
+        networks:
+            - backend
         depends_on:
-            - postgres
+            - postgres_aircraft
+            - postgres_city
+            - postgres_flight
+            - postgres_pilots
             - configserver
             - authservice
             - eurekaserver
@@ -80,10 +168,19 @@ services:
             context: ./flightservice
             dockerfile: Dockerfile
         image: flightservice
+        restart: always
         ports:
             - 8003:8080
+        environment:
+            SPRING_APPLICATION_JSON: '{"spring": {"cloud": {"config": {"uri": "http://configserver:8080"}}}}'
+            WAIT_HOSTS: eurekaserver:8080
+        networks:
+            - backend
         depends_on:
-            - postgres
+            - postgres_aircraft
+            - postgres_city
+            - postgres_flight
+            - postgres_pilots
             - configserver
             - authservice
             - eurekaserver
@@ -93,11 +190,23 @@ services:
             context: ./pilotservice
             dockerfile: Dockerfile
         image: pilotservice
+        restart: always
         ports:
             - 8004:8080
+        environment:
+            SPRING_APPLICATION_JSON: '{ "spring": {"cloud": {"config": {"uri": "http://configserver:8080"}}}}'
+            WAIT_HOSTS: eurekaserver:8080
+        networks:
+            - backend
         depends_on:
-            - postgres
+            - postgres_aircraft
+            - postgres_city
+            - postgres_flight
+            - postgres_pilots
             - configserver
             - authservice
             - eurekaserver
             - apigateway
+networks:
+    backend:
+        driver: bridge
