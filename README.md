@@ -4,7 +4,7 @@
 
 find . -name "pom.xml" -exec mvn clean verify -f '{}' \;
 
-obs.: O servio fligtservice, pela demanda de entrega nao consegui verificar porque o teste dele passa por completo no IntelliJ e quebra no command line.
+obs.: O serviço fligtservice, não consegio verificar o motivo por conta da data de entrega, mas o teste passa por completo no IntelliJ e quebra no command line.
 Por esse motivo, para buildar a aplicação mandei pular os testes.
 
 # Build da aplicação
